@@ -15,6 +15,7 @@ app.set("views", template_path);
 // const monngodb_url="";
 dotenv.config();
 connectMongoDB();
+const port = process.env.port || 3000
 app.use(express.urlencoded({ extended: false }));
 app.use(
     bodyParser.urlencoded({
@@ -153,6 +154,6 @@ Walchand Linux Users' Group</p>
   }
 });
 
-app.listen(5000, () => {
-  console.log("Listening to port 5000");
+app.listen(port, () => {
+  console.log(`Listening to port ${port}`);
 });
