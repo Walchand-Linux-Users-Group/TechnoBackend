@@ -7,7 +7,7 @@ const app = express();
 const connectMongoDB = require("./db");
 const user = require("./user");
 const path = require("path");
-const template_path = path.join(__dirname, "../public/");
+const template_path = path.join(__dirname, "./template/views");
 console.log(__dirname);   
 app.set("view engine", "hbs");
 app.set("views", template_path);
@@ -32,15 +32,15 @@ const corsOptions = {
   origin: '*'
 };
 app.use(cors(corsOptions));
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/success", (req, res) => {
-  res.render("success");
-});
-app.get("/failure", (req, res) => {
-  res.render("failure");
-});
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+// app.get("/success", (req, res) => {
+//   res.render("success");
+// });
+// app.get("/failure", (req, res) => {
+//   res.render("failure");
+// });
 
 app.get('/allUsers', async (req, res) => {
     const users = await user.find();
@@ -58,8 +58,8 @@ app.post("/getData", async (req, res) => {
    
     if (existing != null) {
       console.log("invalid email");
-      // res.send("email fa  ilure");
-      res.render("failure");  
+      res.send("Email Already registered");
+      // res.render("failure");  
       return;
     }
     const existing2 = await user.findOne({
@@ -67,9 +67,10 @@ app.post("/getData", async (req, res) => {
     });
 
     if (existing2 != null) {
-      // res.send("transaction id failure");
+      res.send("transaction id already used");
+
       // res.render("failure", { message: "Payment ID already used !!!" });
-      res.render("failure");
+      // res.render("failure");
       return;
     }
 
@@ -99,10 +100,10 @@ app.post("/getData", async (req, res) => {
         let message = ``;
         if (req.body.course === "Frontend") {
           message = `
-                    <p>We are reaching out to thank you for registering for our Mega Event <strong>METAMORPHOSIS 2K23</strong> which will be held on January 28th and 29th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Go</strong> technology. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
+                    <p>We are reaching out to thank you for registering for our Mega Event for FRONTEND session <strong>TECHNOTWEET 2K23</strong> which will be held on April 15th and 16th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Go</strong> technology. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
 <p>Thank you again, and have a great day. </p>
 <p>For Further Details : </p>
-<p>Join the WhatsApp Group : <a href="https://chat.whatsapp.com/H60ujF2U1bLB8RBYeeed9g">(Here)</a></p>
+
 
 <p>Regards,</br>
 Walchand Linux Users' Group</p>
@@ -116,44 +117,46 @@ Walchand Linux Users' Group</p>
                     `;
         } else if (req.body.course === "Backend") {
           message = `
-                    <p>We are reaching out to thank you for registering for our Mega Event <strong>METAMORPHOSIS 2K23</strong> which will be held on January 28th and 29th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Docker</strong> technology. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
-<p>Thank you again, and have a great day. </p>
-<p>For Further Details : </p>
-<p>Join the WhatsApp Group : <a href="https://chat.whatsapp.com/H60ujF2U1bLB8RBYeeed9g">(Here)</a></p>
-
-<p>Regards,</br>
-Walchand Linux Users' Group</p>
-
-<a href="https://www.instagram.com/wcewlug/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990838/1_ueuuza.png" height="50em"/></a>
-<a href="https://linkedin.com/company/wlug-club" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/2_e25xxl.png" height="50em"/></a>
-<a href="https://www.facebook.com/wlugclub" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/3_ew5ope.png" height="50em"/></a>
-<a href="https://twitter.com/wcewlug" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/4_csegd1.png" height="50em"/></a>
-<a href="http://discord.wcewlug.org/join" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/5_nfvomt.png" height="50em"/></a>
-<a href="https://wcewlug.org/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990835/6_onbyb0.png" height="50em"/></a>
+          <p>We are reaching out to thank you for registering for our Mega Event for BACKEND session <strong>TECHNOTWEET 2K23</strong> which will be held on April 15th and 16th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Go</strong> technology. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
+          <p>Thank you again, and have a great day. </p>
+          <p>For Further Details : </p>
+          
+          
+          <p>Regards,</br>
+          Walchand Linux Users' Group</p>
+          
+          <a href="https://www.instagram.com/wcewlug/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990838/1_ueuuza.png" height="50em"/></a>
+          <a href="https://linkedin.com/company/wlug-club" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/2_e25xxl.png" height="50em"/></a>
+          <a href="https://www.facebook.com/wlugclub" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/3_ew5ope.png" height="50em"/></a>
+          <a href="https://twitter.com/wcewlug" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/4_csegd1.png" height="50em"/></a>
+          <a href="http://discord.wcewlug.org/join" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/5_nfvomt.png" height="50em"/></a>
+          <a href="https://wcewlug.org/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990835/6_onbyb0.png" height="50em"/></a>
                     `;
         } else {
           message = `
-                    <p>We are reaching out to thank you for registering for our Mega Event <strong>METAMORPHOSIS 2K23</strong> which will be held on January 28th and 29th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Both Go and Docker</strong> technologies. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
-<p>Thank you again, and have a great day. </p>
-<p>For Further Details : </p>
-<p>Join the WhatsApp Group : <a href="https://chat.whatsapp.com/H60ujF2U1bLB8RBYeeed9g">(Here)</a></p>
-
-<p>Regards,</br>
-Walchand Linux Users' Group</p>
-
-<a href="https://www.instagram.com/wcewlug/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990838/1_ueuuza.png" height="50em"/></a>
-<a href="https://linkedin.com/company/wlug-club" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/2_e25xxl.png" height="50em"/></a>
-<a href="https://www.facebook.com/wlugclub" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/3_ew5ope.png" height="50em"/></a>
-<a href="https://twitter.com/wcewlug" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/4_csegd1.png" height="50em"/></a>
-<a href="http://discord.wcewlug.org/join" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/5_nfvomt.png" height="50em"/></a>
-<a href="https://wcewlug.org/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990835/6_onbyb0.png" height="50em"/></a>
+          <p>We are reaching out to thank you for registering for our Mega Event for BOTH sessions <strong>TECHNOTWEET 2K23</strong> which will be held on April 15th and 16th 2023, at Walchand College of Engineering, Sangli. You have successfully registered for <strong>Go</strong> technology. You will receive more details before the event date. Please feel free to share the event as we want as many talented people as possible. </p>
+          <p>Thank you again, and have a great day. </p>
+          <p>For Further Details : </p>
+          
+          
+          <p>Regards,</br>
+          Walchand Linux Users' Group</p>
+          
+          <a href="https://www.instagram.com/wcewlug/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990838/1_ueuuza.png" height="50em"/></a>
+          <a href="https://linkedin.com/company/wlug-club" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/2_e25xxl.png" height="50em"/></a>
+          <a href="https://www.facebook.com/wlugclub" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/3_ew5ope.png" height="50em"/></a>
+          <a href="https://twitter.com/wcewlug" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/4_csegd1.png" height="50em"/></a>
+          <a href="http://discord.wcewlug.org/join" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990834/5_nfvomt.png" height="50em"/></a>
+          <a href="https://wcewlug.org/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990835/6_onbyb0.png" height="50em"/></a>
                     `;
         }
-        res.redirect("success");
+        // res.redirect("success");
         // res.render("success")
+        res.send(message)
         // sendEmail(user.email, "Thank You For Registering For Meta 2K23", message);
       } catch (err) {
-        res.redirect("failure");
+        // res.redirect("failure");
+        res.send('Failed to submit!!! Try Again')
         return;
       }
     }
