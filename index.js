@@ -7,23 +7,34 @@ const app = express();
 const connectMongoDB = require("./db");
 const user = require("./user");
 const path = require("path");
-const template_path = path.join(__dirname, "./template/views");
-
+const template_path = path.join(__dirname, "../public/");
+console.log(__dirname);   
 app.set("view engine", "hbs");
 app.set("views", template_path);
+
 //put the connection string here
 // const monngodb_url="";
 dotenv.config();
 connectMongoDB();
-const port = process.env.port || 3000
+
+const port = process.env.PORT || 5000
+app.use(express.json());
+app.use(express.static(template_path))
 app.use(express.urlencoded({ extended: false }));
 app.use(
     bodyParser.urlencoded({
         extended: false,
     })
 );
-app.use(cors());
 
+
+const corsOptions = {
+  origin: '*'
+};
+app.use(cors(corsOptions));
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/success", (req, res) => {
   res.render("success");
 });
@@ -42,6 +53,7 @@ app.get('/users', async (req, res) => {
 
 app.post("/getData", async (req, res) => {
   try {
+    console.log(req.body);
     const existing = await user.findOne({ email: req.body.email });
    
     if (existing != null) {
@@ -71,7 +83,7 @@ app.post("/getData", async (req, res) => {
       course: req.body.course,
       isDualBooted: req.body.answer,
     });
-
+    console.log(User);
     var response = {
       error: "true",
     };
@@ -137,11 +149,11 @@ Walchand Linux Users' Group</p>
 <a href="https://wcewlug.org/" target="_blank"><img src="https://res.cloudinary.com/ravikjha7/image/upload/v1669990835/6_onbyb0.png" height="50em"/></a>
                     `;
         }
-        // res.send(message);
-        res.render("success")
+        res.redirect("success");
+        // res.render("success")
         // sendEmail(user.email, "Thank You For Registering For Meta 2K23", message);
       } catch (err) {
-        res.render("failure", { message: err.message });
+        res.redirect("failure");
         return;
       }
     }
@@ -155,5 +167,5 @@ Walchand Linux Users' Group</p>
 });
 
 app.listen(port, () => {
-  console.log(`Listening to port ${port}`);
+  console.log("Listening to port 5000");
 });
