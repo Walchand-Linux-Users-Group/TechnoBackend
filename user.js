@@ -34,6 +34,10 @@ const empschema = new mongoose.Schema({
     course:{
         type: String,
         required: true,
+    },
+    answer:{
+        type: String,
+        // required: true,
     }
 });
 module.exports =  mongoose.model('user',empschema);
