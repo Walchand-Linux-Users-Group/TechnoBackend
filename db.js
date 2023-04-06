@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const monngodb_url = "mongodb+srv://wlugtechnotweet:technotweet123@cluster0.8uhbeb2.mongodb.net/?retryWrites=true&w=majority";
+require('dotenv').config()
+const monngodb_url =process.env.MONGO_URI ;
 const connectMongoDB = async ()=>{
     await mongoose.connect(monngodb_url).then(()=>{
         console.log("mongodb is connected");

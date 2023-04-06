@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const nodemailerSendgrid = require('nodemailer-sendgrid')
+require('dotenv').config()
 
 const sendEmail = async (email, subject, text) => {
     try {
@@ -11,8 +12,9 @@ const sendEmail = async (email, subject, text) => {
           port: 465,
           secure: true, // true for 465, false for other ports
           auth: {
-            user: "wlug.technotweet@gmail.com", // generated ethereal user
-            pass: "bucatjzovjgmtxbw", // generated ethereal password
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.PASS, // generated ethereal password
+            
           },
         });
   
