@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const nodemailerSendgrid = require('nodemailer-sendgrid')
+
 const sendEmail = async (email, subject, text) => {
     try {
         // let testAccount = await nodemailer.createTestAccount();
@@ -9,8 +11,8 @@ const sendEmail = async (email, subject, text) => {
           port: 465,
           secure: true, // true for 465, false for other ports
           auth: {
-            user: "harshkarwa0765@gmail.com", // generated ethereal user
-            pass: "Harsh1345", // generated ethereal password
+            user: "wlug.technotweet@gmail.com", // generated ethereal user
+            pass: "bucatjzovjgmtxbw", // generated ethereal password
           },
         });
   
@@ -19,7 +21,7 @@ const sendEmail = async (email, subject, text) => {
     //   var transporter = nodemailer.createTransport(smtpConfig);
   
       await transporter.sendMail({
-        from: 'harshkarwa1345@gmail.com',
+        from: 'harshkarwa0765@gmail.com',
         to: email,
         subject: subject,
         html: text,
