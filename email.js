@@ -4,24 +4,17 @@ require('dotenv').config()
 
 const sendEmail = async (email, subject, text) => {
     try {
-        // let testAccount = await nodemailer.createTestAccount();
-
-        // create reusable transporter object using the default SMTP transport
+        // let testAccount = await nodemailer.createTestAccount()
         let transporter = nodemailer.createTransport({
           host: 'smtp.gmail.com',
           port: 465,
-          secure: true, // true for 465, false for other ports
+          secure: true, 
           auth: {
-            user: process.env.EMAIL, // generated ethereal user
-            pass: process.env.PASS, // generated ethereal password
+            user: process.env.EMAIL, 
+            pass: process.env.PASS,
             
           },
         });
-  
-      // console.log(smtpConfig);
-  
-    //   var transporter = nodemailer.createTransport(smtpConfig);
-  
       await transporter.sendMail({
         from: process.env.EMAIL,
         to: email,

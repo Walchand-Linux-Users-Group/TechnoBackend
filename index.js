@@ -29,9 +29,9 @@ const corsOptions = {
   origin: "*",
 };
 app.use(cors(corsOptions));
-app.get("/", (req, res) => {
-  res.render("success");
-});
+// app.get("/", (req, res) => {
+//   res.render("success");
+// });
 // app.get("/success", (req, res) => {
 //   res.render("success");
 // });
@@ -56,17 +56,30 @@ app.post("/getData", async (req, res) => {
 
     if (existing != null) {
       console.log("invalid email");
-      res.status(401).send("Email Already registered");
-      return;
+      return res.status(401).send({
+        success:'false',
+        message:'Email Already Registered',
+      });
+      
+      
     }
     const existing2 = await user.findOne({
       transactionId: req.body.transactionId,
     });
 
     if (existing2 != null) {
-      res.status(401).send("transaction id already used");
+      return res.status(401).send({
+        success:'false',
+        message:'Transaction id already used',
+      });
+      
+    }
 
-      return;
+    if(req.body.phoneno.toString().length!==10){
+      return res.status(401).send({
+        success:'false',
+        message:'Invalid mobile number',
+      });
     }
 
     let User = new user({
@@ -82,7 +95,7 @@ app.post("/getData", async (req, res) => {
 
     const postdata = await User.save();
     sendEmail(User.email,"You have successfully registered for Techno","Congratulations")
-    res.status(201).json({ postdata });
+    return res.status(201).json({ postdata });
     console.log(postdata);
   } catch (error) {
     res.status(500).send("Failed to submit!!! Try Again");
