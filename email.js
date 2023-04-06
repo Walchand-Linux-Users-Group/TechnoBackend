@@ -23,7 +23,7 @@ const sendEmail = async (email, subject, text) => {
     //   var transporter = nodemailer.createTransport(smtpConfig);
   
       await transporter.sendMail({
-        from: 'harshkarwa0765@gmail.com',
+        from: process.env.EMAIL,
         to: email,
         subject: subject,
         html: text,
