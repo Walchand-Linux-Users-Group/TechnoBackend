@@ -19,10 +19,6 @@ const empschema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isDualBooted:{
-        type: String,
-        required: true,
-    },
     collegeName:{
         type: String,
         required: true,

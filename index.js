@@ -90,7 +90,6 @@ app.post("/getData", async (req, res) => {
       collegeName: req.body.collegeName,
       yearOfStudy: req.body.yearOfStudy,
       course: req.body.course,
-      isDualBooted: req.body.answer,
     });
 
     const postdata = await User.save();
