@@ -94,7 +94,8 @@ app.post("/getData", async (req, res) => {
     });
 
     const postdata = await User.save();
-    sendEmail(User.email,"You have successfully registered for Techno","Congratulations")
+    sendEmail(User.email,"Thank You For Registering For TechnoTweet 2K23","Congratulations")
+    
     return res.status(201).json({ postdata });
     console.log(postdata);
   } catch (error) {

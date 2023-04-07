@@ -10,5 +10,4 @@ const connectMongoDB = async ()=>{
     });     
 }
   
-module.exports = connectMongoDB    
-
+module.exports = connectMongoDB
