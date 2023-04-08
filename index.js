@@ -212,7 +212,7 @@ app.post("/getData", async (req, res) => {
                                 color: #000000;
                               "
                             >
-                              Dear Participant,
+                              Hola Dev Wizards,
                             </h1>
         
                             <p
@@ -504,7 +504,7 @@ app.post("/getData", async (req, res) => {
                                 color: #000000;
                               "
                             >
-                              Dear Participant,
+                            Hola Dev Wizards,
                             </h1>
         
                             <p
@@ -796,7 +796,7 @@ app.post("/getData", async (req, res) => {
                                 color: #000000;
                               "
                             >
-                              Dear Participant,
+                            Hola Dev Wizards,
                             </h1>
         
                             <p
