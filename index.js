@@ -184,7 +184,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000;
                       "
                       width="600"
@@ -270,7 +270,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000; ;
                       "
                       width="600"
@@ -476,7 +476,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000;
                       "
                       width="600"
@@ -562,7 +562,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000; ;
                       "
                       width="600"
@@ -768,7 +768,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000;
                       "
                       width="600"
@@ -854,7 +854,7 @@ app.post("/getData", async (req, res) => {
                         vertical-align: top;
                         width: 600px;
                         max-width: 600px;
-                        background-color: #e0e0e0;
+                        background-color: #F2F4F6;
                         color: #000000; ;
                       "
                       width="600"
