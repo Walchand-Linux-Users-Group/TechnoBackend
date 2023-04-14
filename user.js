@@ -34,6 +34,10 @@ const empschema = new mongoose.Schema({
     answer:{
         type: String,
         // required: true,
+    },
+    githubid:{
+        type: String,
+        required: true,
     }
 });
 module.exports =  mongoose.model('user',empschema);

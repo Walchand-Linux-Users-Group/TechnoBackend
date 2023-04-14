@@ -51,7 +51,7 @@ app.get("/users", async (req, res) => {
 
 app.post("/getData", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const existing = await user.findOne({ email: req.body.email });
 
     if (existing != null) {
@@ -71,8 +71,7 @@ app.post("/getData", async (req, res) => {
       return res.status(401).send({
         success:'false',
         message:'Transaction id already used',
-      });
-      
+      }); 
     }
 
     if(req.body.phoneno.toString().length!==10){
@@ -90,6 +89,7 @@ app.post("/getData", async (req, res) => {
       collegeName: req.body.collegeName,
       yearOfStudy: req.body.yearOfStudy,
       course: req.body.course,
+      githubid: req.body.githubid,
     });
     const postdata = await User.save();
     try {

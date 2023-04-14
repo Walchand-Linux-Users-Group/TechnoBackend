@@ -9,5 +9,5 @@ const connectMongoDB = async ()=>{
         console.log(error);
     });     
 }
-  
+
 module.exports = connectMongoDB
