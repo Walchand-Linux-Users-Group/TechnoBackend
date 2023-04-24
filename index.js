@@ -39,12 +39,12 @@ app.use(cors(corsOptions));
 //   res.render("failure");
 // });
 
-app.get("/allUsers", async (req, res) => {
+app.get("/listOfUsers", async (req, res) => {
   const users = await user.find();
   res.send({ Users: users });
 });
 
-app.get("/users", async (req, res) => {
+app.get("/registeredUsers", async (req, res) => {
   const count = await user.find().count();
   res.send({ "No Of Users": count });
 });
